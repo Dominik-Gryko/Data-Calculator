@@ -1,12 +1,12 @@
 class byte_calculator:
     def __init__(self, value = None, unit = None, conversion_type = None):
 
-        self.unit_type = unit.lower()
-        self.unit_value = 0
+        self.unit_type = unit.lower() #like megabytes or gigabytes
+        self.unit_value = 0 #this will be used to calculate the final value into bytes
         self.value_in_bytes = 0
-        self.value = value
-        self.conversion_type = conversion_type
-        self.conversion_value = None
+        self.value = value # value before conversion
+        self.conversion_type = conversion_type # binary or decimal conversion. 1024 or 1000
+        self.conversion_value = None #used to calculate the value that will be used to find the final value.
 
     def find_conversion_type(self):
         if self.conversion_type.lower() == "binary": self.conversion_value = 1024
@@ -16,7 +16,7 @@ class byte_calculator:
     
     def find_unit_value(self):
 
-        if self.conversion_type == None: return
+        if self.conversion_value == None: return
         
         if self.unit_type in ["kilobytes", "kb"]: self.unit_value = self.conversion_value
         elif self.unit_type in ["megabytes", "mb"]: self.unit_value = self.conversion_value ^ 2
@@ -25,5 +25,5 @@ class byte_calculator:
         elif self.unit_type in ["petabytes", "pb"]: self.unit_value = self.conversion_value ^ 5
     
     def calculate_bytes(self):
-        self.value_in_bytes = self.value / self.unit_value
+        self.value_in_bytes = self.value * self.unit_value
         return self.value_in_bytes
