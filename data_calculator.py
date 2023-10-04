@@ -61,8 +61,3 @@ class data_calculator:
     def calculate_petabytes(self):
         if self.byte_value == None: self.calculate_bytes() 
         return self.byte_value / (self.conversion_value ** 5)
-
-
-
-calc = data_calculator(value=1, unit = "pb", conversion_type="binary")
-print(calc.calculate_kilobytes())
