@@ -25,27 +25,27 @@ class data_calculator:
         
     
     def init_bits(self):
-        if self.unit_type in ["bits"]: 
+        if self.unit_type in ["bits", "bit"]: 
             self.bit_value = self.value
-        elif self.unit_type in ["kilobits"]:
+        elif self.unit_type in ["kilobits", "kilobit"]:
             self.bit_value = (self.value * self.decimal_value)
-        elif self.unit_type in ["megabits"]:
+        elif self.unit_type in ["megabits", "megabit"]:
             self.bit_value = (self.value * (self.decimal_value ** 2))
-        elif self.unit_type in ["gigabits"]:
+        elif self.unit_type in ["gigabits", "gigabit"]:
             self.bit_value = (self.value * (self.decimal_value ** 3))
-        elif self.unit_type in ["terabits"]:
+        elif self.unit_type in ["terabits", "terabit"]:
             self.bit_value = (self.value * (self.decimal_value ** 4))
-        elif self.unit_type in ["petabits"]:
+        elif self.unit_type in ["petabits", "petabit"]:
             self.bit_value = (self.value * (self.decimal_value ** 5))      
-        elif self.unit_type in ["kibibits"]:
+        elif self.unit_type in ["kibibits", "kibibit"]:
             self.bit_value = (self.value * self.binary_value)
-        elif self.unit_type in ["mebibits"]:
+        elif self.unit_type in ["mebibits", "mebibit"]:
             self.bit_value = (self.value * (self.binary_value ** 2))
-        elif self.unit_type in ["gibibits"]:
+        elif self.unit_type in ["gibibits", "gibibit"]:
             self.bit_value = (self.value * (self.binary_value ** 3))
-        elif self.unit_type in ["tebibits"]:
+        elif self.unit_type in ["tebibits", "tebibit"]:
             self.bit_value = (self.value * (self.binary_value ** 4))
-        elif self.unit_type in ["pebibits"]:
+        elif self.unit_type in ["pebibits", "pebibit"]:
             self.bit_value = (self.value * (self.binary_value ** 5)) 
         else:
             return "ERROR: CANT RECOGNISE THIS DATA TYPE (FROM init_bits)"
@@ -53,27 +53,27 @@ class data_calculator:
         self.byte_value = self.bit_value/8  
 
     def init_bytes(self):
-        if self.unit_type in ["bytes"]:
+        if self.unit_type in ["bytes", "byte"]:
             self.byte_value = self.value   
-        elif self.unit_type in ["kilobytes"]:
+        elif self.unit_type in ["kilobytes", "kilobyte"]:
             self.byte_value = self.value * (self.decimal_value)
-        elif self.unit_type in ["megabytes"]: 
+        elif self.unit_type in ["megabytes", "megabyte"]: 
             self.byte_value = self.value * (self.decimal_value ** 2)
-        elif self.unit_type in ["gigabytes"]: 
+        elif self.unit_type in ["gigabytes", "gigabyte"]: 
             self.byte_value = self.value * (self.decimal_value ** 3)
-        elif self.unit_type in ["terabytes"]: 
+        elif self.unit_type in ["terabytes", "terabyte"]: 
             self.byte_value = self.value * (self.decimal_value ** 4)
-        elif self.unit_type in ["petabytes"]: 
+        elif self.unit_type in ["petabytes", "petabyte"]: 
             self.byte_value = self.value * (self.decimal_value ** 5)
-        elif self.unit_type in ["kibiobytes"]:
+        elif self.unit_type in ["kibibytes", "kibibyte"]:
             self.byte_value = self.value * (self.binary_value)
-        elif self.unit_type in ["mebibytes"]: 
+        elif self.unit_type in ["mebibytes", "mebibyte"]: 
             self.byte_value = self.value * (self.binary_value ** 2)
-        elif self.unit_type in ["gibibytes"]: 
+        elif self.unit_type in ["gibibytes", "gibibyte"]: 
             self.byte_value = self.value * (self.binary_value ** 3)
-        elif self.unit_type in ["tebibytes"]: 
+        elif self.unit_type in ["tebibytes", "tebibyte"]: 
             self.byte_value = self.value * (self.binary_value ** 4)
-        elif self.unit_type in ["pebibytes"]: 
+        elif self.unit_type in ["pebibytes", "pebibyte"]: 
             self.byte_value = self.value * (self.binary_value ** 5)
         else:
             return "ERROR: CANT RECOGNISE THIS DATA TYPE (FROM init_bytes)"
@@ -151,3 +151,8 @@ class data_calculator:
     
     def convert_to_pebibits(self):
         return (self.bit_value) / (self.binary_value ** 5)
+
+
+
+calc = data_calculator(value = 1, unit = "petabytes")
+print(calc.convert_to_bytes())
