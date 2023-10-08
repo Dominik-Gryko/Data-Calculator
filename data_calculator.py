@@ -37,13 +37,22 @@ class data_calculator:
             self.bit_value = (self.value * (self.decimal_value ** 4))
         elif self.unit_type in ["petabits"]:
             self.bit_value = (self.value * (self.decimal_value ** 5))      
+        elif self.unit_type in ["kibibits"]:
+            self.bit_value = (self.value * self.binary_value)
+        elif self.unit_type in ["mebibits"]:
+            self.bit_value = (self.value * (self.binary_value ** 2))
+        elif self.unit_type in ["gibibits"]:
+            self.bit_value = (self.value * (self.binary_value ** 3))
+        elif self.unit_type in ["tebibits"]:
+            self.bit_value = (self.value * (self.binary_value ** 4))
+        elif self.unit_type in ["pebibits"]:
+            self.bit_value = (self.value * (self.binary_value ** 5)) 
         else:
             return "ERROR: CANT RECOGNISE THIS DATA TYPE (FROM init_bits)"
         
         self.byte_value = self.bit_value/8  
 
     def init_bytes(self):
-
         if self.unit_type in ["bytes"]:
             self.byte_value = self.value   
         elif self.unit_type in ["kilobytes"]:
@@ -56,6 +65,16 @@ class data_calculator:
             self.byte_value = self.value * (self.decimal_value ** 4)
         elif self.unit_type in ["petabytes"]: 
             self.byte_value = self.value * (self.decimal_value ** 5)
+        elif self.unit_type in ["kibiobytes"]:
+            self.byte_value = self.value * (self.binary_value)
+        elif self.unit_type in ["mebibytes"]: 
+            self.byte_value = self.value * (self.binary_value ** 2)
+        elif self.unit_type in ["gibibytes"]: 
+            self.byte_value = self.value * (self.binary_value ** 3)
+        elif self.unit_type in ["tebibytes"]: 
+            self.byte_value = self.value * (self.binary_value ** 4)
+        elif self.unit_type in ["pebibytes"]: 
+            self.byte_value = self.value * (self.binary_value ** 5)
         else:
             return "ERROR: CANT RECOGNISE THIS DATA TYPE (FROM init_bytes)"
         self.bit_value = self.byte_value * 8
@@ -84,21 +103,55 @@ class data_calculator:
 
     def convert_to_petabytes(self):
         return self.byte_value / (self.decimal_value ** 5)
+    
+    def convert_to_kibibytes(self):
+        return self.byte_value / self.binary_value
 
+    def convert_to_mebibytes(self):
+        return self.byte_value / (self.binary_value ** 2)
+    
+    def convert_to_gibibytes(self):
+        return self.byte_value / (self.binary_value ** 3)
+
+    def convert_to_tebibytes(self):
+        return self.byte_value / (self.binary_value ** 4)
+
+    def convert_to_pebibytes(self):
+        return self.byte_value / (self.binary_value ** 5)
+    
     def convert_to_bits(self):
-        return (self.byte_value * 8)
+        return (self.bit_value)
     
     def convert_to_kilobits(self):
-        return (self.byte_value * 8) / self.decimal_value
+        return (self.bit_value) / self.decimal_value
     
     def convert_to_megabits(self):
-        return (self.byte_value * 8) / (self.decimal_value ** 2)
+        return (self.bit_value) / (self.decimal_value ** 2)
     
     def convert_to_gigabits(self):
-        return (self.byte_value * 8) / (self.decimal_value ** 3)
+        return (self.bit_value) / (self.decimal_value ** 3)
     
     def convert_to_terabits(self):
-        return (self.byte_value * 8) / (self.decimal_value ** 4)
+        return (self.bit_value) / (self.decimal_value ** 4)
     
     def convert_to_petabits(self):
-        return (self.byte_value * 8) / (self.decimal_value ** 5)
+        return (self.bit_value) / (self.decimal_value ** 5)
+
+    def convert_to_kibibits(self):
+        return (self.bit_value) / (self.binary_value)
+    
+    def convert_to_mebibits(self):
+        return (self.bit_value) / (self.binary_value ** 2)
+    
+    def convert_to_gibibits(self):
+        return (self.bit_value) / (self.binary_value ** 3)
+    
+    def convert_to_tebibits(self):
+        return (self.bit_value) / (self.binary_value ** 4)
+    
+    def convert_to_pebibits(self):
+        return (self.bit_value) / (self.binary_value ** 5)
+
+
+calc = data_calculator(value = 1, unit = "kibibits")
+print(calc.convert_to_mebibits())
