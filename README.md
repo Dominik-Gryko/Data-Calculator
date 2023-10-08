@@ -1,5 +1,6 @@
 # Data-Calculator
-Coded by:
+![Image](https://raw.githubusercontent.com/Dominik-Gryko/Data-Calculator/master/Images/1.png)  
+Coded by: 
 - Dominik Gryko (data_calculator.py)
 - Lukas Valaitis (menu)
-![Image](https://github.com/Dominik_Gryko/Data-Calculator/blob/master/images/1.png?raw=true)
+
