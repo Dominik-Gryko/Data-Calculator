@@ -151,8 +151,3 @@ class data_calculator:
     
     def convert_to_pebibits(self):
         return (self.bit_value) / (self.binary_value ** 5)
-
-
-
-calc = data_calculator(value = 1, unit = "petabytes")
-print(calc.convert_to_bytes())
