@@ -1,11 +1,9 @@
 def main_menu():
         print("""
 1.Go to Calculator
-2.View previous calculations 
+2.View previous calculations (WIP)
 """)
-main_menu()
 
-units_menu()
 def units_menu():
     print("""The available units are: 
 bits - petabits/pebibits. 
