@@ -2,6 +2,7 @@ def main_menu():
         print("""
 1.Go to Calculator
 2.View previous calculations (WIP)
+0.Exit program
 """)
 
 def units_menu():
