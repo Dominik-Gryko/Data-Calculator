@@ -1,59 +1,43 @@
-while True:
+from data_calculator import data_calculator
 
-    menu_unit_options = {
-    "1": "kilobytes",
-    "2": "megabytes",
-    "3": "gigabytes",
-    "4": "terabytes",
-    "5": "petabytes"
-}
-    print("""
-1.Go to Calculator
-2.View previous calculations 
-""")
-    Selection_main=input("Select an option:\n")
-    if Selection_main =="1":
-        Answer=input("Enter yes to continue\n")
-    elif Selection_main =="2":
-        pass
-    else:
-        print("error, invalid input")
+
+def unit_format(unit: str = None):
+    if unit[-1:].lower() != 's':
+        unit = unit + 's'
     
-    if Answer == "yes":
-        print(menu_unit_options)
-    else:
-        print("error,invalid input")
+    return unit
 
-    Selection_unit = input("Select an option:\n")
-    if Selection_unit == "1":
-        print("Enter yes to continue")
-    elif Selection_unit == "2":
-        print("Enter yes to continue")
-    elif Selection_unit == "3":
-        print("Enter yes to continue")
-    elif Selection_unit == "4":
-        print("Enter yes to continue")
-    elif Selection_unit == "5":
-        print("Enter yes to continue")
-    else:
-        print("Error, invalid input")
+def supported_unit_check(unit: str = None):
+    
 
-    number = int(input("Enter the amount"))
+    supported_units = ["bytes","bits","kilobytes", "kibibytes", "megabytes", "mebibytes", "gigabytes", "gibibytes", "terabytes",
+    "tebibytes","petabytes","pebibytes","kilobits", "kibibits", "megabits", "mebibits", "gigabits", "gibibits", "terabits","tebibits","petabits","pebibits"]
 
-    if Selection_unit == "1":
-        print(number * 1024)
-    elif Selection_unit == "2":
-        print(number * (1024 ** 2) )
-    elif Selection_unit == "3":
-        print(number * (1024 ** 3) )
-    elif Selection_unit == "4":
-        print(number * (1024 ** 4))
-    elif Selection_unit == "5":
-        print(number * (1024 ** 5))
+    if unit not in supported_units: 
+        return False
     else:
-        print("Error, invalid input")
-    if not input("Do you want to continue? (y/n) ").lower().startswith("y"):
-        break
-    else:
-        continue
+        return True
+
+
+def FR_correct_conversion(calculator_instance = None, unit: str = None):
+    try:
+        conversion = getattr(calculator_instance, f"convert_to_{unit}")
+        return conversion()
+    except Exception:
+        return "ERROR: Cant convert to this unit, as it is not supported/recognised."
+
+
+
+user_value = 3
+user_unit = "kibibytes"
+utct = "kilobyte" #Unit To Convert To
+utct = unit_format(unit = utct)
+
+if not supported_unit_check(unit=utct):
+    print("ooooopsies, we ran into a problem trying to recognise your data's unit.")
+
+calculator = data_calculator(value=user_value, unit = user_unit)
+converted_value = FR_correct_conversion(calculator_instance=calculator, unit = utct)
+
+print(converted_value)
 
