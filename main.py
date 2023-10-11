@@ -1,5 +1,6 @@
 from data_calculator import data_calculator
-
+import menu
+import sys
 
 def unit_format(unit: str = None):
     if unit[-1:].lower() != 's':
@@ -26,16 +27,50 @@ def FR_correct_conversion(calculator_instance = None, unit: str = None):
     except Exception:
         return "ERROR: Cant convert to this unit, as it is not supported/recognised."
 
+menu.main_menu()
+while True:
+    mm_choice = int(input("Enter the number corresponding to your choice: "))
+    if mm_choice == 1:
+        menu.units_menu()
+        break
+    elif mm_choice == 2:
+        print("Work in progress, not available yet.")
+    elif mm_choice == 0:
+        sys.exit()
+    else:
+        print("Error: Invalid choice please try again.")   
 
 
-user_value = 3
-user_unit = "kibibytes"
-utct = "kilobyte" #Unit To Convert To
-utct = unit_format(unit = utct)
+while True:
+    try:
+        user_value = int(input("Enter the value of the data,(Don't include the unit): ")) 
+    except Exception:
+        print("Error: invalid value of data entered, please enter an integer.")
+    else:
+        break
 
-if not supported_unit_check(unit=utct):
-    print("ooooopsies, we ran into a problem trying to recognise your data's unit.")
+while True:  
+    try:
+        user_unit = input("Enter the unit of your data: ")
+        user_unit = unit_format(unit = user_unit)
+        if not supported_unit_check(unit=user_unit):
+            print("This unit is not recognised, please try again.")
+        else:
+            break
+    except Exception:
+        print("Error: invalid unit entered, try again.")
 
+while True: 
+    try:
+        utct = input("Enter the unit you want to convert your data to: ") #Unit To Convert To
+        utct = unit_format(unit = utct)
+        if not supported_unit_check(unit=utct):
+            print("This unit is not recognised, please try again.")
+        else:
+            break
+    except Exception:
+        print("Error: invalid unit entered, try again.")
+        
 calculator = data_calculator(value=user_value, unit = user_unit)
 converted_value = FR_correct_conversion(calculator_instance=calculator, unit = utct)
 
